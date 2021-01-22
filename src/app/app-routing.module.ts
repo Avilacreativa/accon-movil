@@ -1,10 +1,30 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { UsuarioGuard } from './guards/usuario.guard';
 
 const routes: Routes = [
   {
+    path: 'main',
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
+    // canActivate: [ UsuarioGuard ]
+    canLoad: [ UsuarioGuard ]
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'tab4',
+    loadChildren: () => import('./pages/tab4/tab4.module').then( m => m.Tab4PageModule)
+  },
+  {
+    path: 'registrar',
+    loadChildren: () => import('./pages/registrar/registrar.module').then( m => m.RegistrarPageModule)
+  },
+  {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    pathMatch: 'full',
+    redirectTo: 'main/tabs/tab1'
   }
 ];
 @NgModule({

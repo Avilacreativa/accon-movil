@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Cliente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="registro(fRegistro)" #fRegistro="ngForm"> 
+    <ion-row>
+        <ion-col>
+            
+            <ion-list>
+                
+                <ion-item>
+                <ion-label>Email</ion-label>
+                <ion-input name="email" 
+                            type="email"
+                            [(ngModel)]="registerUser.email"
+                            required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                <ion-label>Nombre</ion-label>
+                <ion-input name="nombre"
+                            type="text"
+                            [(ngModel)]="registerUser.nombre"
+                            required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                <ion-label>Password</ion-label>
+                <ion-input name="password"
+                            type="password"
+                            [(ngModel)]="registerUser.password"
+                            required></ion-input>
+                </ion-item>
+
+            </ion-list>
+        </ion-col>
+    </ion-row>
+    
+    <ion-row>
+    <ion-col>
+        <ion-button type="submit"
+                    color="tertiary"
+                    shape="round">
+            Crear usuario
+        </ion-button>
+    </ion-col>
+</ion-row>
+
+</form>
+
+</ion-content>

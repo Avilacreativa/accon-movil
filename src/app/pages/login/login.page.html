@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenidos a Accon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides class="mainSlide" #slidesPrincipal>
+    
+    <ion-slide>
+
+      <form (ngSubmit)="login(fLogin)" #fLogin="ngForm" >
+        <ion-grid fixed>
+
+          <ion-row>
+            <ion-col>
+              <img src="/assets/avatars/av-1.png">
+            </ion-col>
+          </ion-row>
+        
+          <ion-row>
+            <ion-col>
+              
+                <ion-list>
+                  
+                  <ion-item>
+                    <ion-label>Email</ion-label>
+                    <ion-input name="email"
+                                type="email"
+                                [(ngModel)]="loginUser.email"
+                                required></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label>Password</ion-label>
+                    <ion-input name="password"
+                                type="password"
+                                [(ngModel)]="loginUser.password"
+                                required></ion-input>
+                  </ion-item>
+
+                </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit"
+                          color="primary"
+                          shape="round">
+                Conectarse
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-label>
+              <small> Para conectarse debera tener un usuario cliente  
+                <br/>otorgado por la empresa Accon. 
+                <br/>Para mayor información contacte <a href="mailto:ventas@accon.cl">ventas@accon.cl</a></small></ion-label>
+          </ion-row>
+
+        </ion-grid>
+      </form>
+    
+
+
+    </ion-slide>
+
+
+
+  </ion-slides>
+
+
+
+</ion-content>

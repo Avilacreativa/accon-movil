@@ -1,7 +1,10 @@
 {
-  "name": "accon2",
+  "name": "accon",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }

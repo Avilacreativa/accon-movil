@@ -1,0 +1,77 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      Nuevo Producto
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="crearProducto()"
+                  [disabled]="producto.titulo.length < 1"
+                  color="primary">
+        Guardar
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    
+    <ion-item>
+      <ion-label position="floating">Titulo</ion-label>
+      <ion-textarea [(ngModel)]="producto.titulo"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-textarea [(ngModel)]="producto.descripcion"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-textarea [(ngModel)]="producto.precio"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio Oferta (Opcional)</ion-label>
+      <ion-textarea [(ngModel)]="producto.precioOferta"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Stock</ion-label>
+      <ion-textarea [(ngModel)]="producto.stock"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">SKU</ion-label>
+      <ion-textarea [(ngModel)]="producto.sku"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full"
+                  shape="round"
+                  (click)="camara()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Cámara
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="full"
+                  shape="round"
+                  (click)="libreria()">
+        <ion-icon slot="start" name="images"></ion-icon>
+        Galería
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3" *ngFor="let image of tempImages">
+      <ion-card>
+        <img [src]="image | imageSanitizer">
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
