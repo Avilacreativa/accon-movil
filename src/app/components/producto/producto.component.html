@@ -9,14 +9,14 @@
 </ion-item>
 
 <!-- ngif img -->
-<ion-slides pager="true" *ngIf="producto.imagen > 1">
+<ion-slides pager="true" *ngIf="producto.imagen.length > 1">
   <ion-slide *ngFor="let img of producto.imagen"
              class="image-slide" 
              [style]=" (img | imagen: producto.usuario._id) | domSanitizer ">
   </ion-slide>
 </ion-slides>
 
-<ion-slides pager="true" *ngIf="producto.imagen === 1" [options]="slideSoloOpts">
+<ion-slides pager="true" *ngIf="producto.imagen.length === 1" [options]="slideSoloOpts">
   <ion-slide class="image-slide" 
               [style]=" ( producto.imagen[0] | imagen: producto.usuario._id)| domSanitizer ">
   </ion-slide>
