@@ -37,3 +37,14 @@ ion-toggle {
     --handle-background: #eb9364;
     --handle-background-checked: rgb(172, 168, 168);
   }
+
+  ion-select {
+    /* Applies to the value and placeholder color */
+    color: #384088;
+  
+    /* Set a different placeholder color */
+    --placeholder-color: #646464;
+  
+    /* Set full opacity on the placeholder */
+    --placeholder-opacity: 1;
+  }

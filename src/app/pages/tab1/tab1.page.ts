@@ -42,7 +42,7 @@ export class Tab1Page implements OnInit {
 
     this.productosService.getPost( pull )
         .subscribe( resp => {
-          console.log(resp);
+  
           this.productos.push(...resp.producto )
      
           if( event ){

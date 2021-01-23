@@ -32,7 +32,6 @@ export class UsuarioService {
         const data =  { email, password } ;
         this.http.post(`${ URL }/user/login`, data)
         .subscribe( async resp => {
-          console.log(resp);
           if( resp['ok'] ) {
     
            await this.guardartoken( resp['token'] );
@@ -58,7 +57,6 @@ export class UsuarioService {
 
       this.http.post(`${ URL }/user/create` , usuario )
       .subscribe( async resp => {
-        console.log( resp );
 
         if( resp['ok'] ) {
     

@@ -14,9 +14,10 @@ export class RegistrarPage {
   
   registerUser: Usuario = {
 
-    email:'test',
-    password:'12345',
-    nombre:'test',
+    email:'',
+    password:'',
+    nombre:'',
+    rol:''
   
   };
   constructor(
@@ -34,7 +35,9 @@ export class RegistrarPage {
 
       //navegar al tabs
   
-      this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } )
+      this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } );
+
+      this.uiServices.alertaInformativa('Usuario nuevo registrado');
   
     }else{
   

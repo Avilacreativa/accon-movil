@@ -20,7 +20,7 @@
                 </ion-item>
 
                 <ion-item>
-                <ion-label>Nombre</ion-label>
+                <ion-label>Nombre y Apellido</ion-label>
                 <ion-input name="nombre"
                             type="text"
                             [(ngModel)]="registerUser.nombre"
@@ -28,12 +28,22 @@
                 </ion-item>
 
                 <ion-item>
-                <ion-label>Password</ion-label>
+                <ion-label>Clave</ion-label>
                 <ion-input name="password"
                             type="password"
                             [(ngModel)]="registerUser.password"
                             required></ion-input>
                 </ion-item>
+                <ion-item>
+                  <ion-label>Seleccionar Rol</ion-label>
+                              <ion-select placeholder="Roles" name="rol"
+                              type="rol"
+                              [(ngModel)]="registerUser.rol"
+                              required >
+                                <ion-select-option value="ROL_CLIENTE">Cliente</ion-select-option>
+                                <ion-select-option value="ROL_ADMIN">Administrador</ion-select-option>
+                              </ion-select>
+                  </ion-item>
 
             </ion-list>
         </ion-col>

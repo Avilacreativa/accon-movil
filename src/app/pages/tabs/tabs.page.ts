@@ -1,5 +1,5 @@
 import { UsuarioService } from './../../services/usuario.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NavController, IonSlides } from '@ionic/angular';
 import { UiserviceService } from '../../services/uiservice.service';
 
@@ -11,6 +11,7 @@ import { UiserviceService } from '../../services/uiservice.service';
 export class TabsPage {
 
   @ViewChild('slidesPrincipal') slides : IonSlides;
+  @Input() usuario: Usuario = {};
   
   registerUser: Usuario = {
 

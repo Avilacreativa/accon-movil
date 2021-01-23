@@ -6,7 +6,7 @@
       <ion-label></ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2">
+    <ion-tab-button tab="tab2" *ngIf="usuario.rol == 'ROL_ADMIN'">
       <ion-icon name="archive"></ion-icon>
       <ion-label></ion-label>
     </ion-tab-button>
@@ -22,7 +22,7 @@
     </ion-tab-button>
     <ion-row>
 
-      <ion-tab-button tab="registrar">
+      <ion-tab-button tab="registrar" *ngIf="usuario.rol == 'ROL_ADMIN'">
         <ion-icon name="person-add"></ion-icon>
         <ion-label></ion-label>
       </ion-tab-button>

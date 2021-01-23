@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UiserviceService } from 'src/app/services/uiservice.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { ProductosService } from '../../services/productos.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -16,14 +17,13 @@ export class Tab3Page implements OnInit {
   constructor(
     private usuarioService : UsuarioService,
     private uiServices: UiserviceService,
+    private navCtrl : NavController,
     private productosService: ProductosService
   ) {}
   
   ngOnInit() {
     
     this.usuario = this.usuarioService.getUsuario();
-
-    console.log(this.usuario);
   }
 
   async actualizar( fActualizar: NgForm ){
@@ -34,6 +34,7 @@ export class Tab3Page implements OnInit {
 
     if( actualizar ){
       //toast con el mensaje actualizado
+      this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } );
       this.uiServices.presentToast('Usuario actualizado');
     }else{
       //toast con mensaje de error

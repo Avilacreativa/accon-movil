@@ -28,7 +28,6 @@ export class Tab2Page {
   ) {}
 
   async crearProducto(){
-    console.log(this.producto);
 
     const creado = await this.productosService.crearProducto( this.producto );
     
