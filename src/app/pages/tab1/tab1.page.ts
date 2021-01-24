@@ -14,8 +14,7 @@ export class Tab1Page implements OnInit {
   productos : Producto[] = [];
   habilitado : boolean = true;
   textoBuscar: string = '';
-
-
+ 
   constructor( 
     private productosService : ProductosService
     
@@ -31,6 +30,10 @@ export class Tab1Page implements OnInit {
     
       
   }
+
+  ionViewDidEnter(){
+    console.log("ionViewDidEnter")
+}
   recargar( event ){
 
     this.siguientes( event, true );
@@ -48,7 +51,7 @@ export class Tab1Page implements OnInit {
           if( event ){
             event.target.complete();
             
-            if( resp.producto.length === 0 ){
+            if( this.productos.length === 0 ){
               this.habilitado = false;
     
             }

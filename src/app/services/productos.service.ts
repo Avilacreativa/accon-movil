@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { UsuarioService } from './usuario.service';
@@ -29,8 +29,7 @@ export class ProductosService {
     }
 
     this.paginaPosts ++;
-
-    return this.http.get<RespuestaProductos>(`${ URL }/productos/?pagina=${ this.paginaPosts }`)
+     return this.http.get<RespuestaProductos>(`${ URL }/productos/?pagina=${ this.paginaPosts }`)
   }
 
   crearProducto( producto ){

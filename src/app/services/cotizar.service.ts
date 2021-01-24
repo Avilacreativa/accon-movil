@@ -22,6 +22,7 @@ export class CotizarService {
   nuevoCotizacion = new EventEmitter<Cotizar>();
 
   constructor(
+    private uiServices : UiserviceService,
     private http: HttpClient,
     private usuarioService: UsuarioService,
     private storage: Storage
@@ -56,9 +57,13 @@ export class CotizarService {
     }
   }
 
-   async agregarProducto(carrito: string[]){
-    this.carrito = carrito;
-    await this.storage.set('producto', carrito) || null;
+    agregarProducto(carrito: string[]){
+    this.carrito.push({...carrito, cantidad:1}); 
+    this.storage.set('productList', this.carrito).then(resp => {
+      this.uiServices.presentToast('Se ha añadido satisfactoriamente!');
+    }).catch(error => {
+      this.uiServices.presentToast('Error! No se pudo agregar al carrito' + error);
+    })
     
   }
   
