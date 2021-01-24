@@ -2,8 +2,8 @@
   <ion-row>
    
     <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12"
-      *ngFor="let producto of productos" >
-      <app-producto [producto] = "producto"></app-producto>
+      *ngFor="let producto of productos; let indice = index">
+      <app-producto (enviarIndice)="removerProducto($event, indice)"  [producto] = "producto"></app-producto>
     </ion-col>
     
   </ion-row>

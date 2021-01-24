@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterViewInit } from '@angular/core';
 import { ProductosService } from '../../services/productos.service';
 import { NgForm } from '@angular/forms';
 import { CotizarService } from '../../services/cotizar.service';
@@ -6,18 +6,20 @@ import { UiserviceService } from '../../services/uiservice.service';
 import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { ModalController, NavController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { TabsPage } from '../tabs/tabs.page';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-tab4',
   templateUrl: './tab4.page.html',
   styleUrls: ['./tab4.page.scss'],
 })
-export class Tab4Page implements OnInit {
+export class Tab4Page implements OnInit{
 
-  carrito : string[] = [];
+  carrito = [];
   habilitado : boolean = true;
-  cantidad: Number = 1;
-
+  cantidad: number = 1;
+  prueba=0;
   cotizacion : Cotizar = {
 
     nombre: '',
@@ -27,10 +29,10 @@ export class Tab4Page implements OnInit {
     rut: 77,
     direccion: '',
     productos: []
-  
+ 
   };
   
-  
+
   constructor( 
     private productosService : ProductosService,
     private cotizarService : CotizarService,
@@ -39,23 +41,56 @@ export class Tab4Page implements OnInit {
     private modalCtrl : ModalController,
     private alertCtrl : AlertController,
     private storage : Storage,
-    private navCtrl : NavController
+    private navCtrl : NavController,
+    private tabs : TabsPage
       ) {}
 
   ngOnInit() {
-   
   }
 
-  bajarCantidad(product){
-    this.cotizarService.bajarCantidadProducto(product);
-  }
 
-  aumentarItemCarrito(product){
-    this.cotizarService.agregarProducto(product);
-  }
+  ionViewWillEnter(){
+    console.log("ionViewWillEnter")
+    this.storage.get('productList').then(resp => {
+      this.carrito = resp; 
+    }).catch(error => {
+      this.storage.set('productList', [])
+    })
+}
+ionViewDidEnter(){
+    console.log("ionViewDidEnter")
+}
 
-  removerCarritoItem(product){
-    this.cotizarService.eliminarProducto(product);
+addItem(p, indice){
+  this.carrito[indice].cantidad = this.carrito[indice].cantidad + 1; 
+  this.storage.set('productList', this.carrito).then(resp => {
+    console.log("lista de productos ", resp)
+    this.carrito = resp; 
+  }).catch(error => {
+    console.log("ocurrio un error ", error);
+  }) 
+}
+
+removeItem(p, indice){
+  this.carrito[indice].cantidad = this.carrito[indice].cantidad - 1; 
+  this.storage.set('productList', this.carrito).then(resp => {
+    console.log("lista de productos ", resp)
+    this.carrito = resp; 
+    
+  }).catch(error => {
+    console.log("ocurrio un error ", error);
+  })
+}
+
+  removerCarritoItem(product, indice){
+    console.log("esta es la posisicion ", indice);
+    this.carrito.splice(indice,1);
+    this.storage.set('productList', this.carrito).then(resp => {
+      this.uiServices.presentToast('Eliminado Producto del Carrito!');
+    }).catch(error => {
+      this.uiServices.presentToast('Error! No se pudo eliminar del carrito' + error);
+    })
+   // this.cotizarService.eliminarProducto(product);
   }
 
   close(){
@@ -66,7 +101,8 @@ export class Tab4Page implements OnInit {
   async cotizar(fCotizar: NgForm){
 
     if(fCotizar.invalid) { return; }
-    
+    this.cotizacion.productos = await this.storage.get('productList');
+
     const valido = await this.cotizarService.cotizar( this.cotizacion );
    
     if(valido){

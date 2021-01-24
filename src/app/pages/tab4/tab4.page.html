@@ -71,30 +71,27 @@
             <ion-label>Producto</ion-label>
             <ion-label>Cantidad</ion-label>
           </ion-item> 
-          <ion-item *ngFor="let p of [1,1,1,1]" >
-            <ion-label>0000000</ion-label>
-            <ion-label>Titulo Prueba</ion-label>
-            <ion-label >
-              
-                <ion-button color="medium" fill="clear" (click)="bajarCantidad(p)">
-                  <ion-icon slot="icon-only" name="remove-circule"></ion-icon>
-                </ion-button>
-              
-                {{ cantidad }}
-              
-              
-                <ion-button color="medium" fill="clear" (click)="aumentarItemCarrito(p)">
-                  <ion-icon slot="icon-only" name="remove-circule"></ion-icon>
-                </ion-button>
-              
-
-            </ion-label>
+          <ion-item *ngFor="let p of carrito; let indice=index" >
+            <ion-label>{{p.sku}}</ion-label>
+            <ion-label>{{p.titulo}}</ion-label>
             
-              <ion-button color="medium" fill="clear" (click)="removerCarritoItem(p)">
+            <ion-button color="medium" fill="clear" (click)="removerCarritoItem(p, indice)">
+              <ion-icon ios="ios-add" md="md-add"></ion-icon>
+            </ion-button>
+            <ion-button color="medium" fill="clear" (click)="removeItem(p, indice)">
+              <ion-icon slot="icon-only" name="remove"></ion-icon>
+            </ion-button>{{p.cantidad}}
+     
+            <ion-button color="medium" fill="clear" (click)="addItem(p, indice)">
+              <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+            
+              <ion-button color="medium" fill="clear" (click)="removerCarritoItem(p, indice)">
                 <ion-icon slot="icon-only" name="trash"></ion-icon>
               </ion-button>
             
           </ion-item> 
+          <ion-label *ngIf="carrito?.length == 0">No se han agregado productos!</ion-label>
         </ion-list>
         </ion-col>
         

@@ -46,11 +46,11 @@ registerUser: Usuario = {
 
   async login(fLogin: NgForm){
 
-    if(fLogin.invalid){ return }
+   // if(fLogin.invalid){ return }
 
-    const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password);
+   // const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password);
 
-  if(valido){
+  if(true){
 
     //navegar al tabs
 
