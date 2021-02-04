@@ -28,15 +28,23 @@ const routes: Routes = [
         loadChildren: () => import('../registrar/registrar.module').then(m => m.RegistrarPageModule)
       },
       {
+        path: 'categorias',
+        loadChildren: () => import('../categorias/categorias.module').then(m => m.CategoriasPageModule)
+      },
+      {
+        path: 'producto-categoria',
+        loadChildren: () => import('../producto-categoria/producto-categoria.module').then(m => m.ProductoCategoriaPageModule)
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/categorias',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/categorias',
     pathMatch: 'full'
   }
 ];

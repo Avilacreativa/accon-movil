@@ -25,25 +25,33 @@
             <ion-list>
               
               <ion-item>
-                <ion-label>Email</ion-label>
                 <ion-input name="email"
                            type="email"
+                           placeholder="Correo"
+                           pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"
                            [(ngModel)]="usuario.email"
                            required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label>Nombre y Apellido</ion-label>
                 <ion-input name="nombre"
                            type="text"
+                           placeholder="Nombre y apellido"
                            [(ngModel)]="usuario.nombre"
+                           required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="empresa"
+                           type="text"
+                           placeholder="Nombre Empresa"
+                           [(ngModel)]="usuario.empresa"
                            required></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label>Clave</ion-label>
                 <ion-input name="password"
                            type="password"
+                           placeholder="Clave"
                            [(ngModel)]="usuario.password"
                            required></ion-input>
               </ion-item>

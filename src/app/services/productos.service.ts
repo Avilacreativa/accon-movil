@@ -32,6 +32,17 @@ export class ProductosService {
      return this.http.get<RespuestaProductos>(`${ URL }/productos/?pagina=${ this.paginaPosts }`)
   }
 
+  getCategoriasProductos( pull: boolean = false, categoria: any ){
+
+    if( pull ){
+      this.paginaPosts = 0;
+    }
+  
+    this.paginaPosts ++;
+
+    return this.http.get<RespuestaCategoriasByProducto>(`${ URL }/productos/${ categoria }/?pagina=${ this.paginaPosts }`)
+  }
+
   crearProducto( producto ){
     
     const headers = new HttpHeaders ({

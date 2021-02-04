@@ -23,16 +23,20 @@
 </ion-slides>
 
 <ion-item lines="none">
- 
-  <p hidden >{{ producto._id }}</p>
       
         <ion-icon (click)="agregar(producto)"
         color="primary" slot="end" name="add"></ion-icon>
       
   <ion-label >
-    SKU: {{ producto.sku }} | STOCK: {{ producto.stock }}
+    Codigo: {{ producto.sku }}
   </ion-label>
 </ion-item>
+<ion-item>
+  <small>
+    Categoria:{{ producto.categoria }} || Sub-Categoria: {{ producto.subCategoria }}
+  </small>
+  </ion-item>
+  
 <ion-item>
 <ion-label>
   {{ producto.descripcion }}

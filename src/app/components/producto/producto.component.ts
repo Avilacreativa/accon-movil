@@ -32,7 +32,8 @@ slideSoloOpts = {
   ngOnInit() {}
   
   agregar( product ){
-    // this.uiServices.presentToast('Se ha añadido stisfactoriamente');
+
+    this.uiServices.presentToast('Se ha añadido stisfactoriamente');
     this.enviarIndice.emit(product);
     this.cotizarService.agregarProducto(product);
     

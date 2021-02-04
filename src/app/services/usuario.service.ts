@@ -6,6 +6,7 @@ import { resolve } from 'dns';
 import { promise } from 'protractor';
 import { environment } from '../../environments/environment';
 import { async } from '@angular/core/testing';
+import { UiserviceService } from './uiservice.service';
 
 const URL = environment.url;
 
@@ -21,7 +22,8 @@ export class UsuarioService {
   constructor(
     private http: HttpClient,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private uiServices: UiserviceService
   ) { }
 
   login(email: string, password: string){
@@ -159,6 +161,35 @@ logout(){
   this.usuario = null;
   this.storage.clear();
   this.navCtrl.navigateRoot('/login', {animated: true});
+}
+
+validarPerfil(email: string){
+
+  return new Promise(
+    resolve =>{
+
+      
+      this.http.get<any>(`${ URL }/user/list`)
+      .subscribe( async resp => {
+        if( resp['ok'] ) {
+         console.log("repsondio ok ", resp.usuarios);
+         let login = []; 
+         login = resp.usuarios.filter(element => element.email === email && element.estado === "activo" && element.rol === "ROL_CLIENTE")
+          
+          if (login.length > 0){
+            resolve(true);
+          }else{
+            resolve(false)
+          }
+     
+        }else{
+          this.uiServices.alertaInformativa('No se pudo validar perfil de Usuario.');
+          resolve(false)
+        }
+  
+      });
+
+    });
 }
 
 

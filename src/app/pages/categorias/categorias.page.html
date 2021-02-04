@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccione Categoria</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-item *ngFor="let item of categorias"  button (click)="categoriasProducto(item.titulo)" detail>
+      <ion-label>
+        {{ item.titulo }} 
+       
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+  <ion-infinite-scroll [disabled]="!habilitado"
+  threshold="150px" (ionInfinite)="siguientes($event)">
+<ion-infinite-scroll-content>
+</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

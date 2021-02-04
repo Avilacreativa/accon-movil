@@ -17,6 +17,7 @@ export class RegistrarPage {
     email:'',
     password:'',
     nombre:'',
+    empresa:'',
     rol:''
   
   };

@@ -4,6 +4,8 @@ import { UiserviceService } from 'src/app/services/uiservice.service';
 import { UsuarioService } from '../../services/usuario.service';
 import { ProductosService } from '../../services/productos.service';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'app-tab3',
@@ -18,12 +20,14 @@ export class Tab3Page implements OnInit {
     private usuarioService : UsuarioService,
     private uiServices: UiserviceService,
     private navCtrl : NavController,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private storage: Storage
   ) {}
   
   ngOnInit() {
     
     this.usuario = this.usuarioService.getUsuario();
+    console.log(this.usuario)
   }
 
   async actualizar( fActualizar: NgForm ){
@@ -48,6 +52,7 @@ export class Tab3Page implements OnInit {
 
     this.productosService.paginaPosts = 0;
     this.usuarioService.logout();
+    this.storage.clear();
     
   }
 

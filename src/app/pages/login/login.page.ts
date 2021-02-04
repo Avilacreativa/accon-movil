@@ -15,18 +15,9 @@ export class LoginPage implements OnInit {
 
 
 loginUser = {
-  email:'admin2@avila.cl',
-  password:'admin'
+  email:'cliente5@cliente.cl',
+  password:'cliente'
 }
-
-registerUser: Usuario = {
-
-  email:'test',
-  password:'12345',
-  nombre:'test',
-  rol: 'ROL_CLIENT'
-
-};
 
 
 
@@ -48,13 +39,18 @@ registerUser: Usuario = {
 
    // if(fLogin.invalid){ return }
 
-   // const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password);
+  const valido = await this.usuarioService.login( this.loginUser.email, this.loginUser.password);
 
   if(true){
 
-    //navegar al tabs
-
-    this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } )
+    this.usuarioService.validarPerfil(this.loginUser.email).then(respuesta =>{
+      if (respuesta){
+        
+        this.navCtrl.navigateRoot( 'main/tabs/categorias', { animated: true } )
+      }else{
+        this.uiServices.alertaInformativa('Usuario no tiene perfil de cliente.');
+      }
+    }); 
 
   }else{
 
@@ -66,38 +62,5 @@ registerUser: Usuario = {
   
   }
 
-
-  async registro(fRegistro){
-
-    if(fRegistro.invalid) { return; }
-    
-    const valido = await this.usuarioService.registro( this.registerUser );
-   
-    if(valido){
-
-      //navegar al tabs
-  
-      this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } )
-  
-    }else{
-  
-      //mostrar alerta de Usuario y contraseña 
-  
-      this.uiServices.alertaInformativa('Correo electronico ya existe.');
-  
-    }
-  }
-
-  mostrarRegistro(){
-    this.slides.lockSwipes(false);
-    this.slides.slideTo(0);
-    this.slides.lockSwipes(true);
-  }
-
-  mostrarLogin(){
-    this.slides.lockSwipes(false);
-    this.slides.slideTo(1);
-    this.slides.lockSwipes(true);
-  }
 
 }

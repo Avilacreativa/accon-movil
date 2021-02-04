@@ -1,0 +1,35 @@
+<ion-header [translucent]="true" class="ion-no-border"> 
+  <ion-toolbar>
+    <ion-buttons slot="start" class="ion-padding">
+      <ion-icon slot="icon-only" name="briefcase"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Categoria {{ pageTitle }}
+    </ion-title>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Buscar Producto..."
+          inputmode="text" 
+          [debounce]="250"
+         (ionChange)="onSearchChange($event)"
+            animater></ion-searchbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light" class="ion-padding"> 
+
+ 
+  <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  
+  <app-productos [productos] = "productosCategoria | filtro: textoBuscar: 'titulo' "></app-productos>
+
+  <ion-label *ngIf="productosCategoria?.length == 0">No hay productos disponibles</ion-label>
+  
+  <ion-infinite-scroll [disabled]="!habilitado"
+                        threshold="150px" (ionInfinite)="siguientes($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+</ion-content>

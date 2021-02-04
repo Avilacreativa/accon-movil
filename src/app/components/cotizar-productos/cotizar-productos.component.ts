@@ -20,9 +20,10 @@ export class CotizarProductosComponent implements OnInit {
 
     nombre: '',
     email: '',
-    telefono: 77,
+    telefono: +569,
     empresa: '',
-    rut: 77,
+    observaciones: '',
+    tipo:'',
     direccion: '',
     productos: []
   

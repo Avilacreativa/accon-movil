@@ -8,6 +8,8 @@ import { ModalController, NavController, AlertController } from '@ionic/angular'
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs.page';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-tab4',
@@ -16,6 +18,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class Tab4Page implements OnInit{
 
+  usuario: Usuario = {};
   carrito = [];
   habilitado : boolean = true;
   cantidad: number = 1;
@@ -24,10 +27,12 @@ export class Tab4Page implements OnInit{
 
     nombre: '',
     email: '',
-    telefono: 77,
+    telefono: 9,
     empresa: '',
-    rut: 77,
+    observaciones: '',
+    tipo: '',
     direccion: '',
+    estado:'',
     productos: []
  
   };
@@ -41,11 +46,14 @@ export class Tab4Page implements OnInit{
     private modalCtrl : ModalController,
     private alertCtrl : AlertController,
     private storage : Storage,
+    private route: Router,
     private navCtrl : NavController,
-    private tabs : TabsPage
+    private tabs : TabsPage,
+    private usuarioService: UsuarioService
       ) {}
 
   ngOnInit() {
+    this.usuario = this.usuarioService.getUsuario();
   }
 
 
@@ -64,7 +72,6 @@ ionViewDidEnter(){
 addItem(p, indice){
   this.carrito[indice].cantidad = this.carrito[indice].cantidad + 1; 
   this.storage.set('productList', this.carrito).then(resp => {
-    console.log("lista de productos ", resp)
     this.carrito = resp; 
   }).catch(error => {
     console.log("ocurrio un error ", error);
@@ -74,9 +81,7 @@ addItem(p, indice){
 removeItem(p, indice){
   this.carrito[indice].cantidad = this.carrito[indice].cantidad - 1; 
   this.storage.set('productList', this.carrito).then(resp => {
-    console.log("lista de productos ", resp)
     this.carrito = resp; 
-    
   }).catch(error => {
     console.log("ocurrio un error ", error);
   })
@@ -87,6 +92,7 @@ removeItem(p, indice){
     this.carrito.splice(indice,1);
     this.storage.set('productList', this.carrito).then(resp => {
       this.uiServices.presentToast('Eliminado Producto del Carrito!');
+      this.route.navigateByUrl('/main/tabs/tab4');
     }).catch(error => {
       this.uiServices.presentToast('Error! No se pudo eliminar del carrito' + error);
     })
@@ -101,11 +107,20 @@ removeItem(p, indice){
   async cotizar(fCotizar: NgForm){
 
     if(fCotizar.invalid) { return; }
-    this.cotizacion.productos = await this.storage.get('productList');
+    this.cotizacion.nombre =  this.usuario.nombre;
+    this.cotizacion.email =  this.usuario.email;
+    this.cotizacion.empresa =  this.usuario.empresa;
+    this.cotizacion.estado = "nuevo";
 
+    this.cotizacion.productos = await this.storage.get('productList');
+    if(this.cotizacion.productos == null){
+
+      this.uiServices.presentToast('Debe agregar al menos un producto')
+
+    }else{
     const valido = await this.cotizarService.cotizar( this.cotizacion );
-   
-    if(valido){
+  
+      if(valido){
   
 
       let emailCotizacion = 
@@ -114,7 +129,8 @@ removeItem(p, indice){
       'Correo: <br/>' + this.cotizacion.email +
       'Telefono: <br/>'+ this.cotizacion.telefono +
       'Nombre de Empresa: <br/>'+ this.cotizacion.empresa +
-      'RUT: <br/>' + this.cotizacion.rut +
+      'Observaciones: <br/>' + this.cotizacion.observaciones +
+      'Tipo de solicitud: <br/>' + this.cotizacion.tipo +
       'Dirección: <br/>' + this.cotizacion +
       'Productos: <br/>'+ this.cotizacion.productos;
 
@@ -140,15 +156,16 @@ removeItem(p, indice){
       //navegar al tabs
       this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } );
       
-      this.uiServices.alertaInformativa('Cotización ha sido enviada.');
+      this.uiServices.alertaInformativa('Solicitud ha sido enviada.');
 
       
-    }else{
+      }else{
   
       //mostrar alerta de Usuario y contraseña 
   
-      this.uiServices.alertaInformativa('Cotización no ha podido ser enviada.');
+      this.uiServices.alertaInformativa('Solicitud no ha podido ser enviada.');
   
+      }
     }
   }
 
