@@ -17,13 +17,4 @@ export class ProductosComponent implements OnInit {
 
   }
 
-  removerProducto(event, indice):void{
-
-    this.productos.splice(indice,1);
-    console.log("el producto es ", event); 
-    console.log("el indice es ", indice); 
-  }
-
-
-
 }

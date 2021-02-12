@@ -54,6 +54,7 @@ export class Tab4Page implements OnInit{
 
   ngOnInit() {
     this.usuario = this.usuarioService.getUsuario();
+    this.storage.set('productList', [])
   }
 
 
@@ -79,12 +80,15 @@ addItem(p, indice){
 }
 
 removeItem(p, indice){
-  this.carrito[indice].cantidad = this.carrito[indice].cantidad - 1; 
-  this.storage.set('productList', this.carrito).then(resp => {
-    this.carrito = resp; 
-  }).catch(error => {
-    console.log("ocurrio un error ", error);
-  })
+  if (this.carrito[indice].cantidad > 0) {
+    this.carrito[indice].cantidad = this.carrito[indice].cantidad - 1; 
+
+    this.storage.set('productList', this.carrito).then(resp => {
+      this.carrito = resp; 
+    }).catch(error => {
+      console.log("ocurrio un error ", error);
+    })
+  }
 }
 
   removerCarritoItem(product, indice){
@@ -157,7 +161,10 @@ removeItem(p, indice){
       this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } );
       
       this.uiServices.alertaInformativa('Solicitud ha sido enviada.');
-
+      this.storage.set('productList', []).then(resp => {
+      }).catch(error => {
+        this.uiServices.presentToast('Error! No se pudo eliminar del carrito' + error);
+      })
       
       }else{
   
