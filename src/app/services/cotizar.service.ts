@@ -57,14 +57,25 @@ export class CotizarService {
     }
   }
 
-    agregarProducto(carrito: string[]){
-    this.carrito.push({...carrito, cantidad:1}); 
-    this.storage.set('productList', this.carrito).then(resp => {
-      this.uiServices.presentToast('Se ha añadido satisfactoriamente!');
-    }).catch(error => {
-      this.uiServices.presentToast('Error! No se pudo agregar al carrito' + error);
-    })
-    
+    agregarProducto(carrito){
+
+      this.storage.get('productList').then(carritoStore => {
+        const find = carritoStore.filter(item => item._id === carrito._id); 
+        if (find.length > 0) {
+            this.uiServices.presentToast('Este producto ya se encuentra agregado en su carrito!');
+        }else{
+            this.carrito = carritoStore; 
+            this.carrito.push({...carrito, cantidad:1}); 
+            this.storage.set('productList', this.carrito).then(resp => {
+              this.uiServices.presentToast('Se ha añadido satisfactoriamente!');
+            }).catch(error => {
+              this.uiServices.presentToast('Error! No se pudo agregar al carrito' + error);
+            })
+        }
+      }).catch(error => {
+      this.storage.set('productList', [])
+      }) 
+     
   }
   
   

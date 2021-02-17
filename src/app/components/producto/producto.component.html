@@ -8,17 +8,21 @@
   </ion-label>
 </ion-item>
 
-<!-- ngif img -->
-<ion-slides pager="true" *ngIf="producto?.imagen?.length > 1">
-  <ion-slide *ngFor="let img of producto.imagen"
+<ion-slides pager="true" *ngIf="producto.imagen.length > 1">
+  <ion-slide *ngFor="let img of producto.imagen" 
              class="image-slide" 
              [style]=" (img | imagen: producto.usuario._id) | domSanitizer ">
   </ion-slide>
 </ion-slides>
 
-<ion-slides pager="true" *ngIf="producto?.imagen?.length === 1" [options]="slideSoloOpts">
+<ion-slides pager="true" *ngIf="producto.imagen.length === 1" [options]="slideSoloOpts">
   <ion-slide class="image-slide" 
               [style]=" ( producto.imagen[0] | imagen: producto.usuario._id)| domSanitizer ">
+  </ion-slide>
+</ion-slides>
+
+<ion-slides pager="true" *ngIf="producto.imagen.length === 0">
+  <ion-slide class="image-slide"><ion-img src="./assets/image-placeholder.jpg"></ion-img>
   </ion-slide>
 </ion-slides>
 
@@ -33,7 +37,8 @@
 </ion-item>
 <ion-item>
   <small>
-    Categoria:{{ producto.categoria }} || Sub-Categoria: {{ producto.subCategoria }}
+    Categoria:{{ producto.categoria }} <br>
+     Sub-Categoria: {{ producto.subCategoria }}
   </small>
   </ion-item>
   

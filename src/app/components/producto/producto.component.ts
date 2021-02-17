@@ -13,8 +13,6 @@ export class ProductoComponent implements OnInit {
 
 @Input() producto: Producto = {};
 
-// Usamos el decorador Output
-@Output() enviarIndice = new EventEmitter();
 
 slideSoloOpts = {
 
@@ -24,19 +22,13 @@ slideSoloOpts = {
 };
 
   constructor(
-    private uiServices : UiserviceService,
     private cotizarService : CotizarService,
-    private storage : Storage
   ) { }
 
   ngOnInit() {}
   
   agregar( product ){
-
-    this.uiServices.presentToast('Se ha añadido stisfactoriamente');
-    this.enviarIndice.emit(product);
     this.cotizarService.agregarProducto(product);
-    
   }
 
 }
