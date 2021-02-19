@@ -1,13 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterViewInit } from '@angular/core';
-import { ProductosService } from '../../services/productos.service';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CotizarService } from '../../services/cotizar.service';
 import { UiserviceService } from '../../services/uiservice.service';
-import { EmailComposer } from '@ionic-native/email-composer/ngx';
-import { ModalController, NavController, AlertController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { TabsPage } from '../tabs/tabs.page';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -39,16 +35,12 @@ export class Tab4Page implements OnInit{
   
 
   constructor( 
-    private productosService : ProductosService,
     private cotizarService : CotizarService,
     private uiServices : UiserviceService,
-    private emailComposer: EmailComposer,
     private modalCtrl : ModalController,
-    private alertCtrl : AlertController,
     private storage : Storage,
     private route: Router,
     private navCtrl : NavController,
-    private tabs : TabsPage,
     private usuarioService: UsuarioService
       ) {}
 
@@ -124,47 +116,25 @@ removeItem(p, indice){
     }else{
     const valido = await this.cotizarService.cotizar( this.cotizacion );
   
+
       if(valido){
-  
 
-      let emailCotizacion = 
-      'Solicitud de cotizacion: <br/>' + 
-      'Nombre y Apellido: <br/>' + this.cotizacion.nombre +
-      'Correo: <br/>' + this.cotizacion.email +
-      'Telefono: <br/>'+ this.cotizacion.telefono +
-      'Nombre de Empresa: <br/>'+ this.cotizacion.empresa +
-      'Observaciones: <br/>' + this.cotizacion.observaciones +
-      'Tipo de solicitud: <br/>' + this.cotizacion.tipo +
-      'Dirección: <br/>' + this.cotizacion +
-      'Productos: <br/>'+ this.cotizacion.productos;
-
-      //enviar email administrador
-      let email = {
-        to: 'avilacreativa.cl@gmail.com',
-        cc: this.cotizacion.email,
-        bcc: ['', ''],
-        attachments: [
-          'file://img/logo.png',
-          'res://icon.png',
-          'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-          'file://README.pdf'
-        ],
-        subject: 'Solicitud de Cotización Accon ',
-        body: emailCotizacion,
-        isHtml: true
-      }
-      
-      // Send a text message using default options
-      this.emailComposer.open(email);
-
-      //navegar al tabs
-      this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } );
-      
       this.uiServices.alertaInformativa('Solicitud ha sido enviada.');
       this.storage.set('productList', []).then(resp => {
       }).catch(error => {
         this.uiServices.presentToast('Error! No se pudo eliminar del carrito' + error);
       })
+      //navegar al tabs y enviar correo
+      this.cotizarService.enviarCorreo(this.cotizacion).subscribe(resp => {
+        this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } );
+      },
+      () =>{
+        this.uiServices.alertaInformativa('Error al enviar el correo de notificacion.');
+      }); 
+    
+      
+ 
+     
       
       }else{
   
