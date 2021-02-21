@@ -108,4 +108,14 @@ export class CotizarService {
     });
 
   }
+
+  enviarCorreo( body ){
+
+    const headers = new HttpHeaders ({
+      'x-token': this.usuarioService.token
+    });
+
+
+    return this.http.post<any>(`${ URL }/email/notificacion`, body, { headers })
+  }
 }
