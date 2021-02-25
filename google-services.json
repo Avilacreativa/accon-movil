@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1098922948287",
+    "firebase_url": "https://accon-demo-frontend-default-rtdb.firebaseio.com",
+    "project_id": "accon-demo-frontend",
+    "storage_bucket": "accon-demo-frontend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098922948287:android:581b3102138698f4dd780a",
+        "android_client_info": {
+          "package_name": "cl.accon.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098922948287-uiflu4tk77fntu8er4mvspm1d90skg16.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCdTgIO0J7uPswBC3cWfXbjFb2hBmPi10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098922948287-uiflu4tk77fntu8er4mvspm1d90skg16.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

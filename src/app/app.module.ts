@@ -19,6 +19,9 @@ import { EmailComposer } from '@ionic-native/email-composer/ngx';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { OneSignal } from '@ionic-native/onesignal/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -35,6 +38,7 @@ import { environment } from '../environments/environment';
     Camera,
     FileTransfer,
     EmailComposer,
+    OneSignal,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
