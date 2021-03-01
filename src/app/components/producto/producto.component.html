@@ -10,12 +10,14 @@
 
 <ion-slides pager="true" *ngIf="producto.imagen.length > 1">
   <ion-slide *ngFor="let img of producto.imagen" 
-             class="image-slide">
+             class="image-slide" 
+              ><ion-img [src]="img"></ion-img>
   </ion-slide>
 </ion-slides>
 
 <ion-slides pager="true" *ngIf="producto.imagen.length === 1" [options]="slideSoloOpts">
-  <ion-slide class="image-slide">
+  <ion-slide class="image-slide" 
+              ><ion-img [src]="producto.imagen[0]"></ion-img>
   </ion-slide>
 </ion-slides>
 
