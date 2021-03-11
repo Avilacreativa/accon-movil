@@ -24,7 +24,12 @@
   
   <app-productos [productos] = "productosCategoria | filtro: textoBuscar: 'titulo' "></app-productos>
 
-  <ion-label *ngIf="productosCategoria?.length == 0">No hay productos disponibles</ion-label>
+  <ion-label *ngIf="productosCategoria?.length == 0">
+    <ion-button (click)="recargar($event)">
+      <ion-icon slot="icon-only" name="sync"></ion-icon>
+       Cargar Productos
+    </ion-button><br>
+    No hay productos disponibles</ion-label>
   
   <ion-infinite-scroll [disabled]="!habilitado"
                         threshold="150px" (ionInfinite)="siguientes($event)">

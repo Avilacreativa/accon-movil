@@ -17,9 +17,18 @@
     </ion-item>
 
   </ion-list>
+
+  <ion-label *ngIf="productosCategoria?.length == 0">
+    <ion-button (click)="recargar($event)">
+      <ion-icon slot="icon-only" name="sync"></ion-icon>
+       Cargar Categorias
+    </ion-button><br>
+    No hay categorias disponibles</ion-label>
+
   <ion-infinite-scroll [disabled]="!habilitado"
   threshold="150px" (ionInfinite)="siguientes($event)">
 <ion-infinite-scroll-content>
 </ion-infinite-scroll-content>
 </ion-infinite-scroll>
+
 </ion-content>
