@@ -54,8 +54,8 @@ export class Tab3Page implements OnInit {
 
     if( actualizar ){
       //toast con el mensaje actualizado
-      this.navCtrl.navigateRoot( 'main/tabs/tab1', { animated: true } );
       this.uiServices.presentToast('Usuario actualizado');
+      this.logout();
     }else{
       //toast con mensaje de error
       this.uiServices.presentToast('No se pudo actualizar');

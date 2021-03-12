@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 
@@ -8,7 +9,8 @@ export class UiserviceService {
 
   constructor( 
     private alertController: AlertController ,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private http: HttpClient,
     ) { }
   
   async alertaInformativa( message: string) {
@@ -25,4 +27,5 @@ export class UiserviceService {
     });
     toast.present();
   }
+ 
 }

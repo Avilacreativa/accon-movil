@@ -1,5 +1,5 @@
-  <ion-header [translucent]="true" class="ion-no-border"> 
-    <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="secondary">
       <ion-buttons slot="start" class="ion-padding">
         <ion-icon slot="icon-only" name="bag-add"></ion-icon>
       </ion-buttons>
@@ -65,7 +65,7 @@
           <ion-label>Productos:</ion-label>
           <ion-list>
           <ion-item *ngFor="let p of carrito; let indice=index" >
-            <ion-label>{{p.titulo}}</ion-label>
+            <ion-label  style="white-space: initial; font-size: 12px;">{{p.titulo}}</ion-label>
             
             <ion-button color="medium" fill="clear" (click)="removerCarritoItem(p, indice)">
               <ion-icon ios="ios-add" md="md-add"></ion-icon>

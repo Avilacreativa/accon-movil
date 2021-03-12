@@ -172,7 +172,7 @@ validarPerfil(email: string){
       this.http.get<any>(`${ URL }/user/list`)
       .subscribe( async resp => {
         if( resp['ok'] ) {
-         console.log("repsondio ok ", resp.usuarios);
+         
          let login = []; 
          login = resp.usuarios.filter(element => element.email === email && element.estado === "activo" && element.rol === "ROL_CLIENTE")
           

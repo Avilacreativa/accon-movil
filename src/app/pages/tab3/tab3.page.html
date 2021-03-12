@@ -1,8 +1,7 @@
-<ion-header [translucent]="true" class="ion-no-border"> 
-  <ion-toolbar>
+<ion-header>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="end">
-      <ion-button (click)="logout()"
-                  color="danger">
+      <ion-button (click)="logout()">
         <ion-icon slot="icon-only" name="exit"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -68,7 +67,7 @@
       <ion-row>
         <ion-col text-center>
           <ion-button type="submit"
-                      color="tertiary"
+                      color="primary"
                       shape="round">
           Actualizar
         </ion-button>
@@ -76,7 +75,7 @@
     </ion-row>
     
   </form>
-<ion-list>
+<ion-list *ngIf="mensajes?.length > 0" >
   <ion-list-header color="primary">
     <h4>Notificaciones</h4>
   </ion-list-header>
