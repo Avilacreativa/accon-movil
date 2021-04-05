@@ -12,7 +12,7 @@ export class CategoriasPage implements OnInit {
 
  @Input() categorias : Categorias[] = [];
  habilitado : boolean = true;
-  textoBuscar: string = '';
+ textoBuscar: string = '';
 
   constructor(
     private categoriasService: CategoriasService,

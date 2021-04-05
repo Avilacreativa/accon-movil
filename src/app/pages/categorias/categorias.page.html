@@ -15,12 +15,12 @@
     </ion-button>
 </ion-label>
 
-  <ion-label *ngIf="categorias?.length == 0">
-    <ion-button (click)="recargar($event)">
+  <ion-label *ngIf="categorias?.length == 0">No hay categorias disponibles</ion-label>
+    <ion-button style="display: block; margin-top:1rem;" (click)="recargar($event)" color="secondary">
       <ion-icon slot="icon-only" name="sync"></ion-icon>
        Cargar Categorias
-    </ion-button><br>
-    No hay categorias disponibles</ion-label>
+    </ion-button>
+    
 
   <ion-infinite-scroll [disabled]="!habilitado"
   threshold="150px" (ionInfinite)="siguientes($event)">

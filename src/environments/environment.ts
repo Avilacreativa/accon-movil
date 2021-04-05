@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://warm-reaches-42981.herokuapp.com'
+  url: 'https://back-accon.herokuapp.com'
 };
 
 /*
