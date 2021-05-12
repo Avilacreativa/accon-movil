@@ -72,8 +72,9 @@
             </ion-button>
             <ion-button color="medium" fill="clear" (click)="removeItem(p, indice)">
               <ion-icon slot="icon-only" name="remove"></ion-icon>
-            </ion-button><ion-input type="text" value="{{p.cantidad}}"></ion-input>
-     
+            </ion-button>
+            
+            <input type="text" value="{{p.cantidad}}" style="max-width: 35px;">
             <ion-button color="medium" fill="clear" (click)="addItem(p, indice)">
               <ion-icon slot="icon-only" name="add"></ion-icon>
             </ion-button>
