@@ -31,7 +31,7 @@ export class ProductoCategoriaPage implements OnInit {
 
   }
   ionViewDidEnter(){
-    console.log("ionViewDidEnter")
+    // console.log("ionViewDidEnter")
 }
   recargar( event ){
 

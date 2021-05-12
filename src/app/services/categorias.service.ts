@@ -34,7 +34,7 @@ export class CategoriasService {
 
       this.http.post(`${ URL }/categoria` , categoria, { headers } )
       .subscribe( async resp => {
-        console.log( resp );
+        // console.log( resp );
 
         if( resp['ok'] ) {
     

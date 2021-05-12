@@ -45,7 +45,7 @@ export class CategoriasPage implements OnInit {
 
     this.categoriasService.getCategorias( pull )
         .subscribe( resp => {
-          console.log(resp);
+          // console.log(resp);
           this.categorias.push(...resp.categorias )
      
           if( event ){

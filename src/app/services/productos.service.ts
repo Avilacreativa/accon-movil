@@ -77,7 +77,7 @@ export class ProductosService {
     const fileTransfer: FileTransferObject = this.filetransfer.create();
     fileTransfer.upload( img, `${ URL }/productos/upload`, options )
     .then( data =>{
-      console.log(data);
+      // console.log(data);
     }).catch( err => {
       console.log('Error en carga', err);
     });

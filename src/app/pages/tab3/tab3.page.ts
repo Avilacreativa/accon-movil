@@ -38,11 +38,11 @@ export class Tab3Page implements OnInit {
     });
 
     this.usuario = this.usuarioService.getUsuario();
-    console.log(this.usuario)
+    // console.log(this.usuario)
   }
 
   async ionViewDidEnter(){
-    console.log('Will Enter - Se cargan los mensajes');
+    // console.log('Will Enter - Se cargan los mensajes');
   this.mensajes = await this.pushService.getMensajes();
   }
 

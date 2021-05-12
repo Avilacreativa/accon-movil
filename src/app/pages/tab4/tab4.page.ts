@@ -51,7 +51,7 @@ export class Tab4Page implements OnInit{
 
 
   ionViewWillEnter(){
-    console.log("ionViewWillEnter")
+    // console.log("ionViewWillEnter")
     this.storage.get('productList').then(resp => {
       this.carrito = resp; 
     }).catch(error => {
@@ -59,7 +59,7 @@ export class Tab4Page implements OnInit{
     })
 }
 ionViewDidEnter(){
-    console.log("ionViewDidEnter")
+    // console.log("ionViewDidEnter")
 }
 
 addItem(p, indice){
@@ -84,7 +84,7 @@ removeItem(p, indice){
 }
 
   removerCarritoItem(product, indice){
-    console.log("esta es la posisicion ", indice);
+    // console.log("esta es la posisicion ", indice);
     this.carrito.splice(indice,1);
     this.storage.set('productList', this.carrito).then(resp => {
       this.uiServices.presentToast('Eliminado Producto del Carrito!');

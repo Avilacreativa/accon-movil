@@ -27,13 +27,13 @@ export class PushService {
     
     this.oneSignal.handleNotificationReceived().subscribe((noti) => {
      // do something when notification is received
-     console.log('Notificación recibida', noti);
+    //  console.log('Notificación recibida', noti);
      this.notificacionRecibida( noti );
     });
     
     this.oneSignal.handleNotificationOpened().subscribe( async (noti) => {
       // do something when a notification is opened
-      console.log('Notificación abierta', noti);
+      // console.log('Notificación abierta', noti);
      await this.notificacionRecibida( noti.notification ); 
     });
     

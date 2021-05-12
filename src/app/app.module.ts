@@ -20,6 +20,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { OneSignal } from '@ionic-native/onesignal/ngx';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { OneSignal } from '@ionic-native/onesignal/ngx';
     FileTransfer,
     EmailComposer,
     OneSignal,
+    CookieService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

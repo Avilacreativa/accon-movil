@@ -157,8 +157,8 @@ getUsuario() {
   }
 
 logout(){
-  this.token = null;
-  this.usuario = null;
+  // this.token = null;
+  // this.usuario = null;
   this.storage.clear();
   this.navCtrl.navigateRoot('/login', {animated: true});
 }

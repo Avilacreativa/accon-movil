@@ -89,7 +89,7 @@ export class CotizarService {
 
       this.http.post(`${ URL }/cotizar` , cotizar, { headers } )
       .subscribe( async resp => {
-        console.log( resp );
+        // console.log( resp );
 
         if( resp['ok'] ) {
     

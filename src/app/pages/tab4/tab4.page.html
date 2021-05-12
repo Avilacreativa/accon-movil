@@ -72,7 +72,7 @@
             </ion-button>
             <ion-button color="medium" fill="clear" (click)="removeItem(p, indice)">
               <ion-icon slot="icon-only" name="remove"></ion-icon>
-            </ion-button>{{p.cantidad}}
+            </ion-button><ion-input type="text" value="{{p.cantidad}}"></ion-input>
      
             <ion-button color="medium" fill="clear" (click)="addItem(p, indice)">
               <ion-icon slot="icon-only" name="add"></ion-icon>

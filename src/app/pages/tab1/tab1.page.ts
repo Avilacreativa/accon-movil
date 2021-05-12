@@ -32,7 +32,7 @@ export class Tab1Page implements OnInit {
   }
 
   ionViewDidEnter(){
-    console.log("ionViewDidEnter")
+    // console.log("ionViewDidEnter")
 }
   recargar( event ){
 
